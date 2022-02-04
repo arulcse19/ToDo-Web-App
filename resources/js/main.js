@@ -27,11 +27,29 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem (value) {
-  addItemToDOM(value);
-  document.getElementById('item').value = '';
+  var getValue = document.getElementById('item').value;
+  var conv_text = getValue.toUpperCase();
+  var todo_val= data.todo.includes(conv_text);
+  var completed_val= data.completed.includes(conv_text);
+  
+  if(todo_val == true)
+  {
+    alert("Already Task Exists in ToDo List");
+  }
+  else if(completed_val == true)
+  {
+    alert("Already Task Exists in Completed List");
+  }
+  else
+  {
+      addItemToDOM(conv_text);
+    document.getElementById('item').value = '';
 
-  data.todo.push(value);
-  dataObjectUpdated();
+      data.todo.push(conv_text);
+      dataObjectUpdated();
+    
+  }
+ 
 }
 
 function renderTodoList() {
